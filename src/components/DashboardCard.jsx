@@ -7,8 +7,8 @@ const DashboardCard = ({ title, value, icon: Icon, bgColor }) => {
         <Icon className="text-white w-8 h-8" />
       </div>
       <div>
-        <h3 className="text-gray-300 text-sm font-medium">{title}</h3>
-        <p className="text-white text-xl font-semibold">{value}</p>
+        <h3 className="text-gray-700 text-sm font-bold">{title}</h3>
+        <p className="text-gray-500 text-xl font-semibold">{value}</p>
       </div>
     </div>
   );
