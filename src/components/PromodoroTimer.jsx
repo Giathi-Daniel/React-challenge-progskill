@@ -70,7 +70,7 @@ const PomodoroTimer = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-xl shadow-lg">
       {/* Preset Selector */}
       <div className="mb-8 grid grid-cols-3 gap-3">
         {presets.map((preset, index) => (
