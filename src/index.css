@@ -6,3 +6,13 @@
     background-size: cover;
   }
 }
+
+
+/* PROMODORO TIMER */
+circle {
+  transition: stroke-dashoffset 0.5s linear;
+}
+
+button {
+  transition: background-color 0.2s ease-in-out;
+}

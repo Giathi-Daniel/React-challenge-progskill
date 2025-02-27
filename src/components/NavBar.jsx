@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Function to handle scroll on menu click
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -26,7 +25,6 @@ const NavBar = () => {
 
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex-shrink-0">
             <h1 className="text-2xl font-bold text-white">My App</h1>
           </div>
@@ -34,7 +32,6 @@ const NavBar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <ul className="flex space-x-8">
-              {/* Update the routes based on the App's routes */}
               <li>
                 <Link
                   to="/"
@@ -45,19 +42,19 @@ const NavBar = () => {
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection('todo-list')} // Scroll to the To Do List section
+                  onClick={() => scrollToSection('todo-list')}
                   className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200"
                 >
                   To Do List
                 </button>
               </li>
               <li>
-                <Link
-                  to="/services"
+                <button
+                  onClick={() => scrollToSection('timer')}
                   className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200"
                 >
-                  Services
-                </Link>
+                  Timer
+                </button>
               </li>
               <li>
                 <Link

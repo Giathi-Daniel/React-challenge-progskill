@@ -1,9 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import DashboardCards from "./components/DashboardCard";
-import TodoList from "./components/TodoList"; // Assuming this is your ToDoList component
-// import Services from "./components/Services"; // Add your Services component
-// import Contact from "./components/Contact"; // Add your Contact component
+import TodoList from "./components/TodoList"; 
+import PomodoroTimer from "./components/PromodoroTimer";
 
 function App() {
   return (
@@ -12,14 +11,20 @@ function App() {
       <Routes>
         <Route path="/" element={<DashboardCards />} />
         <Route path="/todo-list" element={<TodoList />} />
-        {/* <Route path="/services" element={<Services />} />
-        <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/timer" element={<PomodoroTimer />} />
+        {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>
 
       {/* ToDo List Section */}
       <section id="todo-list" className="py-6 bg-gray-100">
         <h2 className="text-3xl font-bold text-center">To Do List</h2>
         <TodoList />
+      </section>
+
+      {/* Promodoro Section */}
+      <section id="timer" className="py-6">
+        <h2 className="text-3xl font-bold text-center">Promodoro Timer</h2>
+        <PomodoroTimer />
       </section>
     </div>
   );
