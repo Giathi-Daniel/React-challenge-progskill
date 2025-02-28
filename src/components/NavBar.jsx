@@ -43,7 +43,7 @@ const NavBar = () => {
               <li>
                 <button
                   onClick={() => scrollToSection('todo-list')}
-                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200"
+                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200 cursor-pointer"
                 >
                   To Do List
                 </button>
@@ -51,18 +51,18 @@ const NavBar = () => {
               <li>
                 <button
                   onClick={() => scrollToSection('timer')}
-                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200"
+                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200 cursor-pointer"
                 >
                   Timer
                 </button>
               </li>
               <li>
-                <Link
-                  to="/contact"
-                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200"
+                <button
+                  onClick={() => scrollToSection('weather')}
+                  className="text-white hover:text-blue-600 text-sm font-bold transition-colors duration-200 cursor-pointer"
                 >
-                  Contact
-                </Link>
+                  Weather
+                </button>
               </li>
             </ul>
             <div className="ml-8">

@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import DashboardCards from "./components/DashboardCard";
 import TodoList from "./components/TodoList"; 
 import PomodoroTimer from "./components/PromodoroTimer";
+import Weather from "./components/Weather";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path="/" element={<DashboardCards />} />
         <Route path="/todo-list" element={<TodoList />} />
         <Route path="/timer" element={<PomodoroTimer />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/weather" element={<Weather />} />
       </Routes>
 
       {/* ToDo List Section */}
@@ -25,6 +26,12 @@ function App() {
       <section id="timer" className="py-6">
         <h2 className="text-3xl font-bold text-center">Promodoro Timer</h2>
         <PomodoroTimer />
+      </section>
+
+      {/* WEATHER Section */}
+      <section id="weather" className="bg-gray-100 py-6">
+        <h2 className="text-3xl font-bold text-center mb-4">Weather API</h2>
+        <Weather />
       </section>
     </div>
   );
