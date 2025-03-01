@@ -74,7 +74,7 @@ const Quote = () => {
       setQuote(cachedData);
       setIsLoading(false);
     }
-  }, []);
+  }, [fetchQuote]);
 
   return (
     <div className="max-w-3xl mx-auto p-6">
