@@ -43,7 +43,7 @@ export function StreakProvider({ children }) {
   );
 }
 
-StreakProvider.propTypes = {]
+StreakProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
