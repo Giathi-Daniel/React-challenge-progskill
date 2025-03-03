@@ -1,11 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
+import { getLocalMidnight, updateStreakLogic } from '../utils/StreakUtils';
 
 const StreakContext = createContext();
-
-const getLocalMidnight = () => {
-  const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
-};
 
 export function StreakProvider({ children }) {
   const [streakData, setStreakData] = useState(() => {
@@ -28,23 +25,7 @@ export function StreakProvider({ children }) {
   const updateStreak = () => {
     const today = getLocalMidnight();
 
-    setStreakData((prev) => {
-      let newStreak = prev.current;
-
-      if (prev.lastCompleted === today) return prev;
-
-      if (prev.lastCompleted === today - 86400000) {
-        newStreak++;
-      } else {
-        newStreak = 1;
-      }
-
-      return {
-        current: newStreak,
-        longest: Math.max(newStreak, prev.longest),
-        lastCompleted: today,
-      };
-    });
+    setStreakData((prev) => updateStreakLogic(prev, today)); 
   };
 
   useEffect(() => {
@@ -61,6 +42,10 @@ export function StreakProvider({ children }) {
     </StreakContext.Provider>
   );
 }
+
+StreakProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export const useStreak = () => {
   const context = useContext(StreakContext);

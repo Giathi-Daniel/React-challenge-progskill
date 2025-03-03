@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, Reorder } from "framer-motion";
-import { useStreak } from "../context/StreakContext";
+import { useStreak } from "../context/StreakProvider";
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);

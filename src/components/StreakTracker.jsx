@@ -1,4 +1,4 @@
-import { useStreak } from "../context/StreakContext";
+import { useStreak } from "../context/StreakProvider";
 import { motion } from "framer-motion";
 
 export const StreakTracker = () => {
