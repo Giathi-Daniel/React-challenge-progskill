@@ -1,5 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../firebase";
+import { createContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { auth, db } from "../firebase";
+import { sendEmailVerification } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -10,25 +13,28 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
-        // Check email verification status
         if (!user.emailVerified) {
           await sendEmailVerification(user);
         }
 
-        // Log session
-        const sessionDoc = await firestore.collection("sessions").add({
-          userId: user.uid,
-          createdAt: new Date(),
-          deviceInfo: navigator.userAgent,
-          ipAddress: await fetch("https://api.ipify.org").then((res) =>
-            res.text()
-          ),
-        });
-
-        // Store session ID
-        await user.getIdToken(true);
+        try {
+          // Add session data to Firestore
+          const sessionDoc = await addDoc(collection(db, "sessions"), {
+            userId: user.uid,
+            createdAt: new Date(),
+            deviceInfo: navigator.userAgent,
+            ipAddress: await fetch("https://api.ipify.org").then((res) => res.text()),
+          });
+          console.log("Session created:", sessionDoc.id);
+        } catch (error) {
+          console.error("Error creating session in Firestore:", error);
+        }
       }
+      setUser(user); 
+      setLoading(false);
     });
+
+    return () => unsubscribe(); // Cleanup listener
   }, []);
 
   return (
@@ -38,10 +44,9 @@ export function AuthProvider({ children }) {
   );
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
+// Prop types for AuthProvider
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
+
+export { AuthContext };
