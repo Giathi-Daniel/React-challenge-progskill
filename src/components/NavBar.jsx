@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "../context/ThemeProvider";
-import gradientBg from "../assets/gradient-1.jpg"; // Import the background image
+import gradientBg from "../assets/gradient-1.jpg"; 
 import GoogleAuthButton from "./GoogleAuthButton";
+import SessionManagementModal from "./SessionManagementModal"; 
 
 const menuItems = [
   { name: "Home", to: "/" },
@@ -60,9 +61,17 @@ const NavBar = () => {
 
             {/* Theme Toggle */}
             <ThemeToggle />
+
+            {/* Session Management Modal Button */}
+            <div className="ml-8">
+              <SessionManagementModal />
+            </div>
           </div>
 
-          <GoogleAuthButton />
+          {/* GoogleAuthButton */}
+          <div className="hidden md:block">
+            <GoogleAuthButton />
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-4 md:hidden">
@@ -123,6 +132,7 @@ const NavBar = () => {
               Get Started
             </button>
             <GoogleAuthButton />
+            <SessionManagementModal /> 
           </div>
         )}
       </nav>
