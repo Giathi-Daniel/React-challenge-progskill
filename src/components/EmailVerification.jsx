@@ -24,7 +24,7 @@ const EmailVerification = () => {
           await applyActionCode(auth, oobCode);
           setStatus("verified");
         } catch (error) {
-          setError("Invalid verification link");
+          setError("Invalid verification link", error);
         }
       }
     };

@@ -16,9 +16,9 @@ const PrivacyPolicy = () => (
     <section className="mb-10">
       <h2 className="mb-4 text-2xl font-semibold">2. Data Controller</h2>
       <p>
-        [Your Company Name]
+        XYZ Company
         <br />
-        Registered Address: [Your Physical Address]
+        Registered Address: abc street
         <br />
         Data Protection Officer:{" "}
         <a href="mailto:dpo@yourcompany.com" className="text-blue-600">
@@ -90,7 +90,7 @@ const PrivacyPolicy = () => (
       </ul>
       <p className="mt-4">
         To exercise these rights, contact us at{" "}
-        <a href="mailto:privacy@yourcompany.com" className="text-blue-600">
+        <a href="mailto:privacy@xyz.com" className="text-blue-600">
           privacy@yourcompany.com
         </a>
         .
@@ -137,10 +137,10 @@ const PrivacyPolicy = () => (
         <br />
         Email:{" "}
         <a href="mailto:privacy@yourcompany.com" className="text-blue-600">
-          privacy@yourcompany.com
+          privacy@xyz.com
         </a>
         <br />
-        Postal: [Your Physical Address]
+        Postal: abc street, 0919
       </p>
     </section>
   </div>

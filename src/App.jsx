@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 import { ThemeProvider } from './context/ThemeProvider';
 
@@ -9,8 +10,21 @@ import PomodoroTimer from './components/PromodoroTimer';
 import Weather from './components/Weather';
 import Quote from './components/Quote';
 import SessionManagementModal from './components/SessionManagementModal';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import GdprConsent from "./components/GdprConsent";
+import EmailVerification from "./components/EmailVerification";
 
 function App() {
+  const [consentGiven, setConsentGiven] = useState(false);
+
+  // Check if consent is already given (either in LocalStorage or Firebase)
+  useEffect(() => {
+    const consentStatus = localStorage.getItem("gdpr-consent");
+    if (consentStatus === "true") {
+      setConsentGiven(true);
+    }
+  }, []);
+  
   return (
     <ThemeProvider>
       <div>
@@ -25,7 +39,11 @@ function App() {
           <Route path="/timer" element={<PomodoroTimer />} />
           <Route path="/weather" element={<Weather />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/email-verification" element={<EmailVerification />} />
         </Routes>
+
+        {!consentGiven && <GdprConsent />}
 
         {/* ToDo List Section */}
         <section id="todo-list" className="py-6 bg-gray-100">
