@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "../context/ThemeProvider";
 import gradientBg from "../assets/gradient-1.jpg"; // Import the background image
+import GoogleAuthButton from "./GoogleAuthButton";
 
 const menuItems = [
   { name: "Home", to: "/" },
@@ -14,7 +15,7 @@ const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="w-full fixed top-0 z-50 shadow-md">
+    <header className="fixed top-0 z-50 w-full shadow-md">
       {/* Background with Blur */}
       <div
         className="absolute inset-0 -z-10"
@@ -26,8 +27,8 @@ const NavBar = () => {
         }}
       ></div>
 
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <nav className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-2xl font-bold text-white">
@@ -36,13 +37,13 @@ const NavBar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="items-center hidden gap-8 md:flex">
             <ul className="flex space-x-8">
               {menuItems.map((item) => (
                 <li key={item.name}>
                   <Link
                     to={item.to}
-                    className="text-white hover:text-blue-400 text-sm font-bold transition-colors duration-200"
+                    className="text-sm font-bold text-white transition-colors duration-200 hover:text-blue-400"
                   >
                     {item.name}
                   </Link>
@@ -52,7 +53,7 @@ const NavBar = () => {
 
             {/* "Get Started" Button */}
             <div className="ml-8">
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity duration-200 shadow-lg">
+              <button className="px-6 py-2 text-sm font-medium text-white transition-opacity duration-200 rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-90">
                 Get Started
               </button>
             </div>
@@ -61,8 +62,10 @@ const NavBar = () => {
             <ThemeToggle />
           </div>
 
+          <GoogleAuthButton />
+
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="flex items-center gap-4 md:hidden">
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -72,7 +75,7 @@ const NavBar = () => {
               aria-controls="mobile-menu"
             >
               <svg
-                className="h-6 w-6"
+                className="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -101,14 +104,14 @@ const NavBar = () => {
         {isMenuOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden py-4 space-y-4 bg-gray-800/95 backdrop-blur-lg"
+            className="py-4 space-y-4 md:hidden bg-gray-800/95 backdrop-blur-lg"
           >
             <ul className="space-y-4">
               {menuItems.map((item) => (
                 <li key={item.name}>
                   <Link
                     to={item.to}
-                    className="block px-4 py-2 text-white hover:text-blue-400 text-sm font-bold transition-colors duration-200"
+                    className="block px-4 py-2 text-sm font-bold text-white transition-colors duration-200 hover:text-blue-400"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.name}
@@ -116,9 +119,10 @@ const NavBar = () => {
                 </li>
               ))}
             </ul>
-            <button className="w-full mx-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg text-base font-medium hover:opacity-90 transition-opacity duration-200 shadow-lg">
+            <button className="w-full px-6 py-3 mx-4 text-base font-medium text-white transition-opacity duration-200 rounded-lg shadow-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:opacity-90">
               Get Started
             </button>
+            <GoogleAuthButton />
           </div>
         )}
       </nav>
