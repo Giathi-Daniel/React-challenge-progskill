@@ -30,9 +30,7 @@ import { ColorPicker } from "./CustomControls";
 
 const PRESETS = {
   DEFAULT: "default",
-
   MINIMAL: "minimal",
-
   ANALYTICS: "analytics",
 };
 
@@ -57,7 +55,6 @@ const presetConfigs = {
 };
 
 // Reducer for undo/redo
-
 function dashboardReducer(state, action) {
   switch (action.type) {
     case "SET_STATE":
@@ -82,13 +79,7 @@ function dashboardReducer(state, action) {
   }
 }
 
-
-
-export default DashboardCards;
-
-
 // Helper functions
-
 function getIconComponent(widgetId) {
   switch (widgetId) {
     case "users":
