@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAuth, revokeRefreshTokens } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
+import { signOut } from "firebase/auth";
 
 const SessionManagement = () => {
   const [sessions, setSessions] = useState([]);
@@ -23,8 +24,8 @@ const SessionManagement = () => {
     return () => unsubscribe();
   }, [auth.currentUser.uid]);
 
-  const revokeSession = async (sessionId) => {
-    await revokeRefreshTokens(auth, sessionId);
+  const revokeSession = async () => {
+    await signOut(auth); 
   };
 
   return (

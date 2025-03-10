@@ -9,7 +9,7 @@ import TodoList from './components/TodoList';
 import PomodoroTimer from './components/PromodoroTimer';
 import Weather from './components/Weather';
 import Quote from './components/Quote';
-import SessionManagementModal from './components/SessionManagementModal';
+import SessionManagementModal from './components/SessionManagementModal.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import GdprConsent from "./components/GdprConsent";
 import EmailVerification from "./components/EmailVerification";

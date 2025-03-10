@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   DndContext,
   KeyboardSensor,
@@ -19,7 +19,7 @@ import {
   ShoppingCart,
   CheckCircle
 } from "lucide-react";
-import { ColorPicker } from "./CustomControls";
+import { ColorPicker } from "./CustomControl";
 
 // // Types for presets
 // const PRESETS = {
@@ -60,13 +60,12 @@ function getIconComponent(widgetId) {
 }
 
 const Dashboard = () => {
-  // State management
   const [widgets, setWidgets] = useState(["users", "sales", "revenue", "tasks"]);
-  const visibility = useState({
-    users: true,
-    sales: true,
-    revenue: true,
-    tasks: true,
+  const [colors, setColors] = useState({
+    users: "#3b82f6",
+    sales: "#10b981",
+    revenue: "#8b5cf6",
+    tasks: "#f59e0b"
   });
 
   // Sensors for DnD (Drag and Drop)
@@ -78,9 +77,9 @@ const Dashboard = () => {
   );
 
   // useEffect hook for side effects, e.g., logging visibility changes
-  useEffect(() => {
-    console.log("Visibility has changed:", visibility);
-  }, [visibility]); // Only rerun when visibility changes
+  // useEffect(() => {
+  //   console.log("Visibility has changed:", visibility);
+  // }, [visibility]); // Only rerun when visibility changes
 
   // Function to handle the widget drop (DnD logic)
   const handleDragEnd = (event) => {
@@ -95,27 +94,53 @@ const Dashboard = () => {
     }
   };
 
+  const handleColorChange = (widgetId, newColor) => {
+    setColors(prev => ({
+      ...prev,
+      [widgetId]: newColor
+    }));
+  };
+
   return (
     <DndContext
       sensors={sensors}
       onDragEnd={handleDragEnd}
-      modifiers={[restrictToWindowEdges]} // Restrict elements to window edges
+      modifiers={[restrictToWindowEdges]}
     >
-      <div className="dashboard-container">
-        {/* Render Color Picker */}
-        <ColorPicker />
+      <div className="dashboard-container p-6">
+        <div className="mb-6 flex gap-4">
+          {Object.keys(colors).map(widgetId => (
+            <div key={widgetId} className="flex items-center gap-2">
+              <span className="text-sm capitalize">{widgetId}</span>
+              <ColorPicker 
+                value={colors[widgetId]}
+                onChange={(color) => handleColorChange(widgetId, color)}
+              />
+            </div>
+          ))}
+        </div>
 
-        <SortableContext
-          items={widgets}
-          strategy={verticalListSortingStrategy}
-        >
-          <div className="widgets-list">
+        <SortableContext items={widgets} strategy={verticalListSortingStrategy}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {widgets.map((widgetId) => {
               const IconComponent = getIconComponent(widgetId);
               return (
-                <div key={widgetId} className="widget-card">
-                  <IconComponent />
-                  <span>{widgetId}</span>
+                <div 
+                  key={widgetId} 
+                  className="bg-white p-6 rounded-xl shadow-lg transition-all"
+                  style={{ backgroundColor: colors[widgetId] + '20' }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div 
+                      className="p-3 rounded-lg"
+                      style={{ backgroundColor: colors[widgetId] }}
+                    >
+                      <IconComponent className="text-white w-6 h-6" />
+                    </div>
+                    <span className="text-lg font-semibold capitalize">
+                      {widgetId}
+                    </span>
+                  </div>
                 </div>
               );
             })}

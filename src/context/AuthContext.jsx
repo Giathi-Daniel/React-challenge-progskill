@@ -1,6 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { auth, db } from "../firebase";
+import { auth, db } from "../../firebase";
 import { sendEmailVerification } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
           console.error("Error creating session in Firestore:", error);
         }
       }
-      setUser(user); 
+      setUser(user);
       setLoading(false);
     });
 
@@ -42,6 +42,17 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+// Custom hook to use auth context
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+
+  return context;
 }
 
 // Prop types for AuthProvider

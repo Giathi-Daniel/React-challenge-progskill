@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ThemeToggle } from "../context/ThemeProvider";
+import { ThemeToggle } from "../context/ThemeToggle";
 import gradientBg from "../assets/gradient-1.jpg"; 
-import GoogleAuthButton from "./GoogleAuthButton";
-import SessionManagementModal from "./SessionManagementModal"; 
+import GoogleAuthButton from "./GoogleButton";
+import SessionManagementModal from "./SessionManagementModal.jsx"; 
 
 const menuItems = [
   { name: "Home", to: "/" },

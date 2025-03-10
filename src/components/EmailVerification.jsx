@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { sendEmailVerification, applyActionCode } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
 const EmailVerification = () => {
   const [status, setStatus] = useState("idle");

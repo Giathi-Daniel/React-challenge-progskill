@@ -1,5 +1,5 @@
 import { useAuth } from "../context/AuthContext";
-import { signInWithGoogle, logout } from "../firebase";
+import { signInWithGoogle, logout } from "../../firebase";
 
 const GoogleAuthButton = () => {
   const { user, loading } = useAuth();
