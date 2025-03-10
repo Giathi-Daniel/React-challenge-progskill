@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { auth, db } from "../../firebase";
 
 const GdprConsent = () => {
   const [consent, setConsent] = useState(false);

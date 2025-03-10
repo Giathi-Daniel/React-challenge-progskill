@@ -1,12 +1,11 @@
-// ThemeProvider.js
 import { createContext, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ThemeContext = createContext();
+export const ThemeContext = createContext();  
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    // localstorage handling
+    // localStorage handling
     if (typeof window !== 'undefined') {
       try {
         const savedTheme = localStorage.getItem('theme');
@@ -49,5 +48,5 @@ export function ThemeProvider({ children }) {
 }
 
 ThemeProvider.propTypes = {
-  children: PropTypes.node.isRequired, // Validate that 'children' is required and a valid React node
+  children: PropTypes.node.isRequired,
 };
